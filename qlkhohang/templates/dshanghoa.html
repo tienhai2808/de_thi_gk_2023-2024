@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+</head>
+<body>
+  <h1>{{ title }}</h1>
+  {% for hh in hanghoas %}
+    Tên: {{ hh.ten }} <br>
+    Đơn vị tính: {{ hh.don_vi_tinh }} <br>
+    Tồn kho: {{ hh.ton_kho }} <br>
+    <a href="/suahanghoa/{{ hh.id }}/">Sửa thông tin</a> <br> <br>
+  {% endfor %}
+</body>
+</html>
