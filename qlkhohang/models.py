@@ -22,6 +22,9 @@ class HangHoa(models.Model):
 class KhoHangHoa(models.Model):
   hang_hoa = models.ForeignKey(HangHoa, on_delete=models.PROTECT)
   kho = models.ForeignKey(Kho, on_delete=models.PROTECT)
-  so_luong = models.IntegerField(default=0)
+  so_luong = models.IntegerField(default=20)
+  
+  
+  
   #5$uiKlq9
   

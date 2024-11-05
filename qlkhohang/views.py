@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import HangHoaForm
 from .models import *
 from django.contrib import messages
+from django.db.models import Sum
 
 # Create your views here.
 def index(request):
@@ -29,12 +30,6 @@ def suahanghoa(request, id_hang_hoa=None):
   return render(request, 'suahanghoa.html', {'form': form, 'title': title, 'button': button})\
     
 def dshanghoa(request):
-  hanghoas = HangHoa.objects.all()
-  for hh in hanghoas:
-    # list_ton_kho = []
-    # for khh in hh.khohanghoa_set.all():
-    #   list_ton_kho.append(khh.so_luong)
-    # hh.ton_kho = sum(list_ton_kho)
-    hh.ton_kho = sum([khh.so_luong for khh in hh.khohanghoa_set.all()])
+  hanghoas = HangHoa.objects.annotate(ton_kho=Sum('khohanghoa__so_luong'))
   title = 'DANH SÁCH HÀNG HÓA'
   return render(request, 'dshanghoa.html', {'hanghoas': hanghoas, 'title': title})
